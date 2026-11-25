@@ -28,6 +28,7 @@ h2{font-size:clamp(30px,4vw,44px);letter-spacing:-.01em}
 h3{font-size:20px;line-height:1.25}
 p,blockquote{margin:0 0 1em;max-width:66ch;text-align:justify;text-justify:inter-word;hyphens:auto;-webkit-hyphens:auto;overflow-wrap:break-word}
 .contact p,.note,.ok{text-align:center}
+.lead,.journey p,.card p,.v p,.motto{text-align:left;hyphens:manual;-webkit-hyphens:manual}
 .stats span{text-align:left}
 a{color:inherit}
 .wrap{max-width:1240px;margin:0 auto}
@@ -107,7 +108,9 @@ a{color:inherit}
 .when{font:600 14px Inter,sans-serif;color:var(--cobalt);margin-bottom:6px}
 :root[data-theme=dark] .when{color:#8fa6ff}
 @media(prefers-color-scheme:dark){:root:not([data-theme=light]) .when{color:#8fa6ff}}
-.journey p{font-size:15px;color:var(--muted);margin-top:8px}
+.journey h3{font-size:21px;min-height:2.6em}
+.journey p{font-size:15px;line-height:1.6;color:var(--muted);margin-top:10px}
+@media(max-width:900px){.journey h3{min-height:0}}
 @media(max-width:900px){.journey{grid-template-columns:minmax(0,1fr)}.journey::before{left:9px;right:auto;top:0;bottom:0;width:2px;height:auto}.journey li{padding:0 0 30px 44px}.journey li::before{top:2px}}
 
 /* clients */
@@ -295,10 +298,10 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
 const journey=[
- ['1998 onwards','Recruitment & Staffing','Partnered with India’s top IT companies; one-time-fee placements, end-to-end staffing and global onsite placements.'],
+ ['1998 onwards','Recruitment & Staffing','Partnered with India’s top IT companies on placements and global onsite staffing.'],
  ['8+ years','Retail entrepreneur','Built and ran 3 franchise outlets of Just Bake and Black Bean Cafe.'],
- ['Aerospace','DRDO reseller','Pure reseller of pressure transducers to all DRDO Labs.'],
- ['Founder','iTecno Labs','Started an incubation centre for product development companies.'],
+ ['Aerospace','DRDO reseller','Pure reseller of pressure transducers to all DRDO Labs across India.'],
+ ['Founder','iTecno Labs','Founded an incubation centre for product development companies.'],
  ['Today','M&A & Collaboration','Helping companies acquire, merge and build strategic partnerships.']
 ];
 document.getElementById('journeyList').innerHTML=journey.map(([w,t,d])=>`<li><div class="when">${esc(w)}</div><h3>${esc(t)}</h3><p>${esc(d)}</p></li>`).join('');
