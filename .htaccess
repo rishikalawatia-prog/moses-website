@@ -1,0 +1,6 @@
+RewriteEngine On
+
+# Send every visitor to https://www.moseswilliam.com
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} ^moseswilliam\.com$ [NC]
+RewriteRule ^(.*)$ https://www.moseswilliam.com/$1 [L,R=301]
