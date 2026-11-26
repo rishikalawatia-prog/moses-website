@@ -129,14 +129,17 @@ a{color:inherit}
 @media(max-width:900px){.journey{grid-template-columns:minmax(0,1fr)}.journey::before{left:9px;right:auto;top:0;bottom:0;width:2px;height:auto}.journey li{padding:0 0 30px 44px}.journey li::before{top:2px}}
 
 /* clients */
-.clients{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(28px,5vw,72px);align-items:start}
-.logos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.clients{display:flex;flex-direction:column;gap:32px}
+.chead{display:flex;justify-content:space-between;align-items:end;gap:16px 40px;flex-wrap:wrap}
+.chead .lead{margin:0;max-width:56ch}
+.logos{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line)}
 .logos div{border-right:1px solid var(--line);border-bottom:1px solid var(--line);min-height:92px;display:grid;place-items:center;text-align:center;padding:14px;font:600 clamp(15px,1.6vw,18px)/1.2 "Space Grotesk",sans-serif;transition:background .2s,color .2s}
 .logos small{display:block;margin-top:5px;font:500 13px/1.2 Inter,sans-serif;color:var(--muted)}
 .logos div:hover small{color:#dbe3ff}
 .logos div:hover{background:var(--cobalt);color:#fff}
 @media(max-width:860px){.clients{grid-template-columns:minmax(0,1fr)}}
-@media(max-width:480px){.logos{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:1000px){.logos{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:480px){.logos{grid-template-columns:repeat(2,minmax(0,1fr))}.logos div{min-height:72px;padding:10px}}
 
 /* strengths */
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:16px;margin-top:32px}
@@ -259,9 +262,9 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
 
 <section class="band" id="clients">
   <div class="wrap clients">
-    <div>
-      <h2>Trusted by India's technology leaders</h2>
-      <p class="lead" style="margin-top:18px">From 1998, I partnered with leading IT majors on recruitment, staffing and global onsite placements of technology talent.</p>
+    <div class="chead">
+      <h2>Trusted by leading companies</h2>
+      <p class="lead">27+ years in staffing. Since 1998, I have partnered with technology majors, product companies and engineering firms on recruitment, staffing and global onsite placements.</p>
     </div>
     <div class="logos" id="logos"></div>
   </div>
@@ -326,8 +329,8 @@ const journey=[
 ];
 document.getElementById('journeyList').innerHTML=journey.map(([w,t,d])=>`<li><div class="when">${esc(w)}</div><h3>${esc(t)}</h3><p>${esc(d)}</p></li>`).join('');
 
-const clients=['LG Software','Dun & Bradstreet','Satyam','Wipro','KPIT','Tech Mahindra','BFL Software','Saber India','Zenith'];
-const notes={'Satyam':'now Tech Mahindra','BFL Software':'now Mphasis'};
+const clients=['LG Software','Satyam','Tech Mahindra','Sasken','Wipro','Torry Harris','Philips Software','Microland','KPIT','Zenith Software','Saber India','BFL Software','iGate','Dun & Bradstreet','Apar Technologies','Marching Ants','Foley Design','Kulite Semiconductor'];
+const notes={'Satyam':'now Tech Mahindra','BFL Software':'now Mphasis','iGate':'now Capgemini'};
 document.getElementById('logos').innerHTML=clients.map(c=>`<div><span>${esc(c)}${notes[c]?`<small>${esc(notes[c])}</small>`:''}</span></div>`).join('');
 
 const ic={
@@ -370,7 +373,7 @@ s+=`<circle cx="${C}" cy="${C}" r="${R1}" fill="none" stroke="rgba(255,255,255,.
 s+=`<circle cx="${C}" cy="${C}" r="${R2}" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="1.5"/>`;
 const pts=worlds.map(([n,a])=>[n,C+R1*Math.cos(rad(a)),C+R1*Math.sin(rad(a)),a]);
 /* outer client dots */
-clients.forEach((c,i)=>{const a=-90+i*40+12,x=C+R2*Math.cos(rad(a)),y=C+R2*Math.sin(rad(a));const p=pts[i%5];
+clients.slice(0,9).forEach((c,i)=>{const a=-90+i*40+12,x=C+R2*Math.cos(rad(a)),y=C+R2*Math.sin(rad(a));const p=pts[i%5];
  s+=`<line x1="${p[1].toFixed(1)}" y1="${p[2].toFixed(1)}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="rgba(255,255,255,.22)" stroke-width="1"/>`;
  s+=`<circle class="pulse" style="animation-delay:${(i*.35).toFixed(2)}s" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="6" fill="#fff"/>`;});
 /* ring between worlds */
